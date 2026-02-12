@@ -3,7 +3,7 @@ import {
   getBookingsByDate,
   updateBoardingStatus,
 } from "../services/bookingService";
-
+import { toast } from "react-toastify";
 const BookingListPage = () => {
   const [travelDate, setTravelDate] = useState("");
   const [bookings, setBookings] = useState([]);
@@ -11,9 +11,9 @@ const BookingListPage = () => {
   const fetchBookings = async () => {
     try {
       const data = await getBookingsByDate(travelDate);
-      setBookings(data);
-    } catch (error) {
-      alert("Failed to fetch bookings");
+      setBookings(data.bookings);
+    } catch {
+      toast.error("Failed to fetch bookings");
     }
   };
 
@@ -21,8 +21,8 @@ const BookingListPage = () => {
     try {
       await updateBoardingStatus(id, boarded);
       fetchBookings();
-    } catch (error) {
-      alert("Failed to update boarding");
+    } catch {
+      toast.error("Failed to update boarding");
     }
   };
 

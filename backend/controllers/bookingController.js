@@ -1,7 +1,9 @@
 const Booking = require("../models/Booking");
 const { validateBooking } = require("../services/bookingValidationService");
+const asyncHandler = require("../utils/asyncHandler");
+const generateBoardingSequence = require("../services/boardingService");
 
-const createBooking = async (req, res) => {
+const createBooking = asyncHandler(async (req, res) => {
   try {
     const { travelDate, mobileNumber, seats } = req.body;
 
@@ -32,9 +34,9 @@ const createBooking = async (req, res) => {
       message: error.message
     });
   }
-};
+});
 
-const getBookingsByDate = async (req, res) => {
+const getBookingsByDate = asyncHandler(async (req, res) => {
   try {
     const { travelDate } = req.query;
 
@@ -42,15 +44,20 @@ const getBookingsByDate = async (req, res) => {
       createdAt: 1
     });
 
-    res.json(bookings);
+    const boardingSequence = generateBoardingSequence(bookings);
+
+    res.json({
+      totalBoardingTime: boardingSequence.length * 60,
+      bookings: boardingSequence
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message
     });
   }
-};
+});
 
-const updateBoardingStatus = async (req, res) => {
+const updateBoardingStatus = asyncHandler(async (req, res) => {
   try {
     const booking = await Booking.findByIdAndUpdate(
       req.params.id,
@@ -64,7 +71,7 @@ const updateBoardingStatus = async (req, res) => {
       message: error.message
     });
   }
-};
+});
 
 module.exports = {
   createBooking,

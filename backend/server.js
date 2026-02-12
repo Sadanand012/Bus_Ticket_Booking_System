@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const errorHandler = require("./middleware/errorHandler");
 
 require("dotenv").config();
 
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(errorHandler);
 
 app.get("/", (req, res) => {
   res.send("Bus Ticket Booking Backend Running");
