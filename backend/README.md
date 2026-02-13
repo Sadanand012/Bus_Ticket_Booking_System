@@ -94,14 +94,14 @@ backend
 ```js
 {
   bookingId: String,
-  passengerName: String,
-  mobile: String,
-  seatNumber: String,
+  mobileNumber: String,
+  seats: [
+      type: String
+  ],
   travelDate: Date,
-  boardingStatus: {
-    type: String,
-    enum: ["NOT_BOARDED", "BOARDED"],
-    default: "NOT_BOARDED"
+  boarded: {
+    type: Boolean,
+    default: false
   }
 }
 ```
@@ -196,8 +196,6 @@ http://localhost:5000
 ## 🧪 Future Improvements
 
 - Group booking boarding optimization
-- Real-time boarding tracking via WebSockets
-- Role-based authentication (Conductor/Admin)
 - Seat layout visualization
 - Boarding time prediction analytics
 
@@ -205,7 +203,7 @@ http://localhost:5000
 
 ## 👨‍💻 Author
 
-Sadanand M
+Sadanand Mare
 
 ---
 
