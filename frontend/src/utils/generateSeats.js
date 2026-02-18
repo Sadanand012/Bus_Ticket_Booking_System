@@ -4,7 +4,7 @@ export const generateSeats = () => {
   const seatLayout = [];
 
   for (let i = 0; i < rows; i++) {
-    const rowLabel = String.fromCharCode(65 + i); // A, B, C...
+    const rowLabel = String.fromCharCode(65 + i);
     const rowSeats = [];
 
     for (let j = 1; j <= seatsPerRow; j++) {
