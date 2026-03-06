@@ -15,7 +15,7 @@ const MainLayout = ({ children }) => {
           minHeight: "90vh",
           paddingTop: "40px",
           background: "#fff",
-          padding: "30px",
+          padding: "40px",
           borderRadius: "8px",
           boxShadow: "0 0 10px rgba(0,0,0,0.1)",
         }}
